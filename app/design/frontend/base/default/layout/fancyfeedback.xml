@@ -6,7 +6,7 @@
 				<stylesheet>fancyfeedback/css/fancyfeedback.css</stylesheet>
 			</action>
 		</reference>
-		<reference name="footer">
+		<reference name="before_body_end">
 			<block type="fancyfeedback/fancyfeedback" name="fancyfeedback" template="fancyfeedback/fancyfeedback.phtml" />
 		</reference>
 	</default>

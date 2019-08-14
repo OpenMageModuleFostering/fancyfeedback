@@ -4,6 +4,9 @@ display:none;
 top: 300px;
 cursor:pointer;
 }
+#feedback_holder:hover {
+	right: -40px;
+}
 #feedback{
 width: 362px;
 padding: 10px 0px 10px 10px;
@@ -101,8 +104,9 @@ font-weight:bold;
 .feedback-logo{
 -webkit-transform: rotate(-90deg); 
 -moz-transform: rotate(-90deg);	
+-ms-transform: rotate(-90deg);	
+transform: rotate(-90deg);	
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-writing-mode: tb-rl;
 right:-45px;
 font-size: 14px;
 font-family:Verdana;
@@ -119,5 +123,5 @@ float:right;
 text-align:center;
 }
 #feedback-side-logo {
-float:left; right:265px; position:absolute; top: 40px; height:20px;
+float:left; right:259px; position:absolute; top: 39px; height:28px;border-bottom-left-radius:border-bottom-right-radius:0;
 }

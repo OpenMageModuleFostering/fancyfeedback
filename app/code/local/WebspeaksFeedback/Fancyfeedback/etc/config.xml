@@ -2,7 +2,7 @@
 <config>
     <modules>
         <WebspeaksFeedback_Fancyfeedback>
-            <version>0.1.1</version>
+            <version>1.0.2.2</version>
         </WebspeaksFeedback_Fancyfeedback>
     </modules>
     <frontend>
@@ -23,17 +23,19 @@
             </updates>
         </layout>
     </frontend>
+
     <admin>
         <routers>
-			<fancyfeedback>
-				<use>admin</use>
-				<args>
-					<module>WebspeaksFeedback_Fancyfeedback</module>
-					<frontName>fancyfeedback</frontName>
-				</args>
-			</fancyfeedback>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <webspeaksfeedback_fancyfeedback before="Mage_Adminhtml">WebspeaksFeedback_Fancyfeedback_Adminhtml</webspeaksfeedback_fancyfeedback>
+                    </modules>
+                </args>
+            </adminhtml>
         </routers>
     </admin>
+
     <adminhtml>
 		<menu>
 			<fancyfeedback module="fancyfeedback">
@@ -43,13 +45,8 @@
 					<manage module="fancyfeedback">
 						<title>Manage Feedbacks</title>
 						<sort_order>1</sort_order>
-						<action>fancyfeedback/adminhtml_fancyfeedback</action>
+						<action>adminhtml/fancyfeedback</action>
 					</manage>
-					<!--<settings module="fancyfeedback">
-						<title>Settings</title>
-						<sort_order>0</sort_order>
-						<action>fancyfeedback/adminhtml_fancyfeedbacksettings</action>
-					</settings>-->
 				</children>
 			</fancyfeedback>
 		</menu>
