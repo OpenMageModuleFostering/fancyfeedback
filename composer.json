@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/FancyFeedback",
+    "type": "magento-module",
+    "license": "Open-Software-License-(OSL)",
+    "homepage": "",
+    "description": "FancyFeedback allows the visitors on your site to leave you their precious feedbacks in a stylish way.",
+    "authors": [
+    {
+        "name": "Arvind Bhardwaj",
+        "email": "bhardwajsonheight@gmail.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

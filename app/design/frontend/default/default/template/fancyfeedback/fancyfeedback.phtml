@@ -1,0 +1,216 @@
+<?php
+if(Mage::getStoreConfig('fancyfeedbackconfig/fancyfeedback_group/fancyfeedback_enabled'))
+{
+$bg_color = $this->getDesignConfig('fancyfeedback_bgcolor');
+$txt_color = $this->getDesignConfig('fancyfeedback_txtcolor');
+$input_bg = $this->getDesignConfig('fancyfeedback_inputbg');
+$top = $this->getDesignConfig('fancyfeedback_top');
+?>
+<style>
+<?php
+if (!empty($bg_color)) {
+	echo '.feedback-logo, #feedback #formdiv {';
+	echo 'background-color:#'.$bg_color.';';
+	echo '}';
+	echo '#feedback input[type="submit"] {';
+	echo 'color:#'.$bg_color.';';
+	echo '}';
+}
+if (!empty($txt_color)) {
+	echo '.feedback-logo, #feedback #formdiv, #feedback label, .feed_close a, #feedback input[type="text"], #feedback textarea {';
+	echo 'color:#'.$txt_color.' !important;';
+	echo '}';
+	echo '#feedback input[type="submit"] {';
+	echo 'background-color:#'.$txt_color.';';
+	echo '}';
+}
+if (!empty($input_bg)) {
+	echo '#feedback input[type="text"], #feedback textarea {';
+	echo 'background-color:#'.$input_bg.';';
+	echo '}';
+}
+if (!empty($top)) {
+	$top = intval($top);
+	if ($top < 0) {
+		$top = 0;
+	}
+	$log_top = $top + 35;
+	echo '#feedback #formdiv {';
+	echo 'top:'.$top.'px !important;';
+	echo '}';
+	echo '#feedback_holder {';
+	echo 'top:'.$log_top.'px !important;';
+	echo '}';
+}
+?>
+</style>
+
+<!-- Feedback Area // START -->
+<div id="feedback_holder" class="feedback-logo">
+	<span>FEEDBACK</span> 
+</div>
+<div id="feedback">
+	<div id="formdiv" class="formdiv">
+
+		<div id="feedback-side-logo" class="feedback-logo">
+			<span>FEEDBACK</span> 
+		</div>
+		<div id="feed_close" class="feed_close">
+			<a href="javascript:void(0);">Close</a>
+		</div>
+		
+		<div class="box">
+			<table border="0"> 
+			<tr>
+				<td><label>Name:</label><br/><input type="text" name="fdb_name" id="fdb_name"/> </td>
+				<td valign="middle" align="right"></td>
+			</tr> 
+			<tr>
+				<td colspan="2"><label>Email:</label><br/><input type="text" name="fdb_email" id="fdb_email"/></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label>Message: </label><br/>
+					<textarea rows="5" cols="16" name="fdb_msg" id="fdb_msg"></textarea>
+					<input type="hidden" id="fdb_url" value="<?php echo Mage::getUrl().'fancyfeedback/'; ?>">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input id="fdb_submit_btn" type="submit" value="Submit"/><span id="fdb_error"></span></td>
+			</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="form_submit"></div>
+<!-- Feedback Area // END -->
+
+<script type="text/javascript">
+function getIEVersion() {
+	var ver='';
+	if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){ //test for MSIE x.x;
+	 var ieversion=new Number(RegExp.$1) // capture x.x portion and store as a number
+	 if (ieversion>=8)
+		ver=8;
+	 else if (ieversion>=7)
+		ver=7;
+	 else if (ieversion>=6)
+		ver=6;
+	 else if (ieversion>=5)
+		ver=5;
+	}
+	else
+	 ver=0;
+	 
+	return ver;
+}
+
+var fbh = document.getElementById('feedback_holder');
+var fbsl = document.getElementById('feedback-side-logo');
+var fd = document.getElementById('formdiv');
+
+if(navigator.appName == "Microsoft Internet Explorer") {
+	//fbh.style.position = 'absolute';
+	fbh.style.width = '25px';
+	fbh.style.right = '0px';
+
+	fbsl.style.width = '20px';
+	fbsl.style.right = '310px';
+	fbsl.style.top = '0px';
+
+	fd.style.position = 'absolute';
+	fd.style.top = '300px';
+	
+	if(getIEVersion() > 6 && getIEVersion()!=0 && getIEVersion()!='') {
+		fbh.style.height = '100px';
+		fbsl.style.height = '100px';
+		fbsl.style.right = '305px';
+	}
+}
+fbh.style.display = 'block';
+fbh.onclick = showForm;
+fbh.onmouseover = anim;
+fbh.onmouseout = animOut;
+document.getElementById('feed_close').onclick = hideForm;
+document.getElementById('fdb_submit_btn').onclick = submitForm;
+
+function anim() {
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		fbh.style.right = '8px';
+	} else {
+		fbh.style.right = '-37px';
+	}
+}
+function animOut() {
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		fbh.style.right = '0px';
+	} else {
+		fbh.style.right = '-45px';
+	}
+}
+function showForm(e) {
+	if (!e) var e = window.event;
+	fbh.style.display = 'none';
+	fd.style.display = 'block';
+	document.getElementById('fdb_name').value = '';
+	document.getElementById('fdb_name').focus();
+	document.getElementById('fdb_email').value = '';
+	document.getElementById('fdb_msg').value = '';
+	document.getElementById('fdb_submit_btn').removeAttribute('disabled');
+	document.getElementById('fdb_error').innerHTML = '';
+}
+
+function hideForm(e) {
+	if (!e) var e = window.event;
+	fbh.style.display = 'block';
+	document.getElementById('formdiv').style.display = 'none';
+}
+function submitForm(e) {
+	var path = document.getElementById('fdb_url').value;
+	var name = document.getElementById('fdb_name').value.trim();
+	var email = document.getElementById('fdb_email').value.trim();
+	var msg = document.getElementById('fdb_msg').value.trim();
+	if(name.length>0 && email.length>0 && msg.length>0) {
+		if(validate_email(email)) {
+			document.getElementById('fdb_submit_btn').setAttribute('disabled', 'disabled');
+			document.getElementById('fdb_error').innerHTML = 'Submitting your feedback...';
+			
+			var xhr; 
+				try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+				catch (e) {
+					try {   xhr = new ActiveXObject('Microsoft.XMLHTTP');    }
+					catch (e2) {
+					  try {  xhr = new XMLHttpRequest();     }
+					  catch (e3) {  xhr = false;   }
+					}
+				 }
+			  
+				xhr.onreadystatechange  = function() { 
+					 if(xhr.readyState  == 4) {
+						  if(xhr.status  == 200) {
+							document.getElementById('fdb_error').innerHTML = xhr.responseText;
+						  } else {
+							document.getElementById('fdb_error').innerHTML = xhr.status;
+						  }
+					 }
+				}; 
+			   xhr.open("POST", path+"?name="+name+"&email="+email+"&msg="+msg,  true); 
+			   xhr.send(null); 
+		} else {
+			document.getElementById('fdb_error').innerHTML = '<span style="color:red">Your email seems to be invalid!</span>';
+		}
+	} else {
+		document.getElementById('fdb_error').innerHTML = 'Please enter some thing.';
+		document.getElementById('fdb_submit_btn').removeAttribute('disabled');
+	}
+	return false;
+}
+
+function validate_email(str) {
+	return /^([\w-_.]+)(\.[\w-_.]+)*@([\w\-]+)(\.[\w]{2,7})(\.[a-z]{2})?$/i.test(str);
+}
+</script>
+
+<?php
+}
+?>

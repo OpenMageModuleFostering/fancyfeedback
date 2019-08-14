@@ -1,0 +1,123 @@
+#feedback_holder {
+position: fixed;
+display:none;
+top: 300px;
+cursor:pointer;
+}
+#feedback{
+width: 362px;
+padding: 10px 0px 10px 10px;
+/*position: absolute;
+top: 100px;
+display: block;*/
+}
+#feedback #formdiv{
+position: fixed;
+width: 300px;
+background-color: #6f115c;
+padding: 0px 5px 5px 5px;
+-moz-border-radius-bottomright: 6px;
+-moz-border-radius-bottomleft: 6px;
+border-bottom-right-radius:6px;
+border-bottom-left-radius:6px;
+min-height:100px;
+display:none;
+z-index:100;
+top:265px;
+right:0px; 
+float:right;
+}
+#feedback label{
+font:bold 11px arial;
+color: #febaf9;
+}
+#feedback textarea{
+width: 290px;
+height: 100px;
+color: #fcd1f2;
+font: normal 11px verdana;
+border: none;
+padding: 5px;
+background-color: #943080;
+-moz-box-shadow: inset 1px 1px 1px #4c0b3f;
+-webkit-box-shadow: inset 1px 1px 1px #4c0b3f;
+resize: none; /* disable extending textarea in chrome */
+}
+#feedback input[type="text"]{
+color: #606060;
+font: normal 11px verdana;
+padding: 3px;
+width: 200px;
+height: 25px;
+border: none;
+color: #fcd1f2;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+background-color: #943080;
+-moz-box-shadow: inset 1px 1px 1px #4c0b3f;
+-webkit-box-shadow: inset 1px 1px 1px #4c0b3f;
+}
+#feedback input[type="submit"]{
+background-color: #ffaffa;
+border: none;
+color: #6f115c;
+font:bold 11px arial;
+padding: 2px 6px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+cursor: pointer;
+margin: 5px 0;
+}
+#feedback .left_btn,#feedback .right_btn{
+width: 26px;
+height: 100px;
+float: left;
+cursor: pointer;
+}
+
+#feedback .feed_close{
+cursor: pointer;
+margin:0px 0px 0px 0px;
+float:right;
+}
+#feedback .feed_close a{
+color:#FCD1F2;
+font-size:9px;
+text-decoration:none;
+}
+#feedback .feed_close a:hover{
+text-decoration:underline;
+}
+#feedback .feed_close img{
+height:15px; width:16px;
+}
+#fdb_error{
+color:#fff;
+padding:4px;
+font-size:11px;
+font-weight:bold;
+}
+.feedback-logo{
+-webkit-transform: rotate(-90deg); 
+-moz-transform: rotate(-90deg);	
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+writing-mode: tb-rl;
+right:-45px;
+font-size: 14px;
+font-family:Verdana;
+font-weight:900;
+letter-spacing:2px;
+padding: 3px;
+height: 30px;
+color: #FCD1F2;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+background-color: #6f115c;
+float:right;
+text-align:center;
+}
+#feedback-side-logo {
+float:left; right:265px; position:absolute; top: 40px; height:20px;
+}
